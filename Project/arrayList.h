@@ -1,3 +1,6 @@
+#ifndef ARRAYLIST_H
+#define ARRAYLIST_H
+
 #include <iostream>
 
 class ArrayList {
@@ -16,3 +19,5 @@ public:
     int search(int value);
     void print();
 };
+
+#endif
