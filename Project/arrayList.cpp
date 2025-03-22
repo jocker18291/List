@@ -5,3 +5,7 @@ ArrayList::ArrayList() {
     size = 0;
     arr = new int [capacity];
 }
+
+ArrayList::~ArrayList() {
+    delete[] arr;
+}
