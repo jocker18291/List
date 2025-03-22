@@ -5,6 +5,8 @@ private:
     int* arr;
     int size;
     int capacity;
+
+    void resize();
 public:
     ArrayList();  //Constructor
     ~ArrayList();  //Destructor
