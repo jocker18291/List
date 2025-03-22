@@ -6,5 +6,8 @@ private:
     int size;
     int capacity;
 public:
+    ArrayList();  //Constructor
+    ~ArrayList();  //Destructor
+
 
 };
