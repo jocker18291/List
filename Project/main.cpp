@@ -6,7 +6,7 @@
 
 void menu_doubly_linked_list()
 {
-    Doubly_linked_list doubly_list;
+    Doubly_linked_list* Doubly_list = new Doubly_linked_list();
     char choice;
     int value;
     do {
@@ -33,31 +33,31 @@ void menu_doubly_linked_list()
         case '1':
             std::cout << "Enter value to add at the front: ";
             std::cin >> value;
-            doubly_list.push_front(value);
+            Doubly_list->push_front(value);
             break;
         case '2':
             std::cout << "Enter value to add at the back: ";
             std::cin >> value;
-            doubly_list.push_back(value);
+            Doubly_list->push_back(value);
             break;
         case '3':
             std::cout << "Enter value to add at a random position: ";
             std::cin >> value;
-            doubly_list.add_randomly(value);
+            Doubly_list->add_randomly(value);
             break;
         case '4':
-            doubly_list.remove_front();
+            Doubly_list->remove_front();
             break;
         case '5':
-            doubly_list.remove_back();
+            Doubly_list->remove_back();
             break;
         case '6':
-            doubly_list.remove_randomly();
+            Doubly_list->remove_randomly();
             break;
         case '7':
             std::cout << "Enter value to find: ";
             std::cin >> value;
-            if (doubly_list.find(value))
+            if (Doubly_list->find(value))
             {
                 std::cout << "Element found in the list" << std::endl;
             }
@@ -67,21 +67,22 @@ void menu_doubly_linked_list()
             }
             break;
         case '8':
-            doubly_list.print_forward();
+            Doubly_list->print_forward();
             break;
         case '9':
-            doubly_list.print_backward();
+            Doubly_list->print_backward();
             break;
         default:
             std::cout << "Invalid choice" << std::endl;
             break;
         }
     } while (choice != '0');
+    delete Doubly_list;
 }
 
 void menu_singly_linked_list()
 {
-    Singly_linked_list singly_list;
+    Singly_linked_list* Singly_list = new Singly_linked_list();
     char choice;
     int value;
     do {
@@ -107,31 +108,31 @@ void menu_singly_linked_list()
         case '1':
             std::cout << "Enter value to add at the front: ";
             std::cin >> value;
-            singly_list.push_front(value);
+            Singly_list->push_front(value);
             break;
         case '2':
             std::cout << "Enter value to add at the back: ";
             std::cin >> value;
-            singly_list.push_back(value);
+            Singly_list->push_back(value);
             break;
         case '3':
             std::cout << "Enter value to add at a random position: ";
             std::cin >> value;
-            singly_list.add_randomly(value);
+            Singly_list->add_randomly(value);
             break;
         case '4':
-            singly_list.remove_front();
+            Singly_list->remove_front();
             break;
         case '5':
-            singly_list.remove_back();
+            Singly_list->remove_back();
             break;
         case '6':
-            singly_list.remove_randomly();
+            Singly_list->remove_randomly();
             break;
         case '7':
             std::cout << "Enter value to find: ";
             std::cin >> value;
-            if (singly_list.find(value))
+            if (Singly_list->find(value))
             {
                 std::cout << "Element found in the list" << std::endl;
             }
@@ -141,13 +142,14 @@ void menu_singly_linked_list()
             }
             break;
         case '8':
-            singly_list.print_forward();
+            Singly_list->print_forward();
             break;
         default:
             std::cout << "Invalid choice" << std::endl;
             break;
         }
     } while (choice != '0');
+    delete Singly_list;
 }
 int main()
 {
