@@ -1,4 +1,5 @@
 #include "ArrayList.h"
+#include <iostream>
 
 ArrayList::ArrayList() {
     capacity = 10; //initializing it with 10
