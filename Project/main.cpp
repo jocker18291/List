@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "arrayList.h"
 #include "Doubly_linked_list.hpp"
 #include "Singly_linked_list.hpp"
 
@@ -151,6 +152,78 @@ void menu_singly_linked_list()
     } while (choice != '0');
     delete Singly_list;
 }
+
+void menu_dynamic_array() {
+    ArrayList* DynArr = new ArrayList();
+    char choice;
+    int value;
+    do {
+        std::cout << "-----------------------------------------" << std::endl;
+        std::cout << "Dynamic Array Menu:" << std::endl;
+        std::cout << "1. Add element at the front" << std::endl;
+        std::cout << "2. Add element at the back" << std::endl;
+        std::cout << "3. Add element at a random position" << std::endl;
+        std::cout << "4. Remove element from the front" << std::endl;
+        std::cout << "5. Remove element from the back" << std::endl;
+        std::cout << "6. Remove element from a random position" << std::endl;
+        std::cout << "7. Find element" << std::endl;
+        std::cout << "8. Print list from the front" << std::endl;
+        std::cout << "0. Exit" << std::endl;
+        std::cout << "Enter your choice: ";
+
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case '0':
+            break;
+        case '1':
+            std::cout << "Enter value to add at the front: ";
+            std::cin >> value;
+            DynArr->add(0, value);
+            break;
+        case '2':
+            std::cout << "Enter value to add at the back: ";
+            std::cin >> value;
+            DynArr->add(size, value);
+            break;
+        case '3':
+            std::cout << "Enter value to add at a random position: ";
+            std::cin >> value;
+            DynArr->add(0, value);
+            break;
+        case '4':
+            DynArr->remove(0);
+            break;
+        case '5':
+            DynArr->remove(size - 1);
+            break;
+        case '6':
+            DynArr->remove(0);
+            break;
+        case '7':
+            std::cout << "Enter value to find: ";
+            std::cin >> value;
+            if (DynArr->search(value))
+            {
+                std::cout << "Element found in the list" << std::endl;
+            }
+            else
+            {
+                std::cout << "Element not found" << std::endl;
+            }
+            break;
+        case '8':
+            DynArr->print();
+            break;
+        default:
+            std::cout << "Invalid choice" << std::endl;
+            break;
+        }
+    } while (choice != '0');
+    delete DynArr;
+}
+
 int main()
 {
     char choice;
