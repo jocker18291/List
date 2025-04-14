@@ -234,6 +234,7 @@ int main()
     std::cout << "Choose list type:" << std::endl;
     std::cout << "1. Singly Linked List" << std::endl;
     std::cout << "2. Doubly Linked List" << std::endl;
+    std::cout << "3. Dynamic Array" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout << "Enter your choice: ";
 
@@ -244,13 +245,16 @@ int main()
         switch (choice)
         {
         case '0':
-            return 0;
+            break;
         case '1':
             menu_singly_linked_list();
-            return 0;
+            break;
         case '2':
             menu_doubly_linked_list();
-            return 0;
+            break;
+        case '3':
+            menu_dynamic_array();
+            break;
         default:
             std::cout << "Invalid choice" << std::endl;
             break;
