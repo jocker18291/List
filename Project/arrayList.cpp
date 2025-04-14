@@ -58,3 +58,9 @@ int ArrayList::search(int value) {
     }
     return -1;
 }
+
+void ArrayList::print() {
+    for(int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " " << std::endl;
+    }
+}
