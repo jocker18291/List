@@ -19,3 +19,21 @@ void ArrayList::resize() {
     delete[] arr;
     arr = newArr;
 }
+
+void ArrayList::add(int value, int index) {
+    if(index < 0 || index > size) {
+        std::cerr << "Index out of bounds!" << std::endl;
+        return;
+    }
+    if(size == capacity){
+        resize();
+    }
+
+    for(int i = size; i > index; --i) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[index] = value;
+
+    ++size;
+}
