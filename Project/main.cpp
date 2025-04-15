@@ -197,7 +197,7 @@ void menu_dynamic_array() {
             DynArr->remove(0);
             break;
         case '5':
-            DynArr->remove(size - 1);
+            DynArr->remove(DynArr->getSize() - 1);
             break;
         case '6':
             DynArr->remove(0);
