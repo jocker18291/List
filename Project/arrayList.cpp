@@ -1,5 +1,6 @@
 #include "ArrayList.h"
 #include <iostream>
+#include <random>
 
 ArrayList::ArrayList() {
     capacity = 10; //initializing it with 10
@@ -63,5 +64,15 @@ int ArrayList::search(int value) {
 void ArrayList::print() {
     for(int i = 0; i < size; ++i) {
         std::cout << arr[i] << " " << std::endl;
+    }
+}
+
+void ArrayList::fillRandom(int count, int min, int max) {
+    std::mt19937 gen(std::random_device{}());
+    std::uniform_int_distribution<> dist(min, max);
+
+    for(int i = 0; i < count; ++i) {
+        int val = dist(gen);
+        add(val, size);
     }
 }
