@@ -76,3 +76,7 @@ void ArrayList::fillRandom(int count, int min, int max) {
         add(val, size);
     }
 }
+
+int ArrayList::getSize() const {
+    return size;
+}
