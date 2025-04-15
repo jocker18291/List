@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
+#include <vector>
 #include "arrayList.h"
 #include "Doubly_linked_list.hpp"
 #include "Singly_linked_list.hpp"
@@ -225,101 +226,81 @@ void menu_dynamic_array() {
     delete DynArr;
 }
 
-void benchmark_dynamic_array(int num_elements, int trials) {
+void benchmark_all(int num_elements, int trials) {
     using namespace std::chrono;
 
-    long long total_add_time = 0;
-    long long total_search_time = 0;
-    long long total_remove_time = 0;
+    long long add_dyn = 0, search_dyn = 0, remove_dyn = 0;
+    long long add_sll = 0, search_sll = 0, remove_sll = 0;
+    long long add_dll = 0, search_dll = 0, remove_dll = 0;
 
     for(int t = 0; t < trials; ++t) {
-        ArrayList list;
-        list.fillRandom(num_elements);
+        // --- Dynamic Array ---
+        ArrayList arr;
+        arr.fillRandom(num_elements);
+        auto start = high_resolution_clock::now();
+        arr.add(12345, 0);
+        auto end = high_resolution_clock::now();
+        add_dyn += duration_cast<nanoseconds>(end - start).count();
 
-        auto start_add = high_resolution_clock::now();
-        list.add(12345, list.getSize() / 2); // w srodku
-        auto end_add = high_resolution_clock::now();
-        total_add_time += duration_cast<nanoseconds>(end_add - start_add).count();
+        start = high_resolution_clock::now();
+        arr.search(12345);
+        end = high_resolution_clock::now();
+        search_dyn += duration_cast<nanoseconds>(end - start).count();
 
-        auto start_search = high_resolution_clock::now();
-        list.search(12345); // w srodku
-        auto end_search = high_resolution_clock::now();
-        total_search_time += duration_cast<nanoseconds>(end_search - start_search).count();
+        start = high_resolution_clock::now();
+        arr.remove(0);
+        end = high_resolution_clock::now();
+        remove_dyn += duration_cast<nanoseconds>(end - start).count();
 
-        auto start_remove = high_resolution_clock::now();
-        list.remove(list.getSize() / 2); // w srodku
-        auto end_remove = high_resolution_clock::now();
-        total_remove_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
+        // --- Singly Linked List ---
+        Singly_linked_list sll;
+        sll.fillRandom(num_elements);
+
+        start = high_resolution_clock::now();
+        sll.push_front(12345);
+        end = high_resolution_clock::now();
+        add_sll += duration_cast<nanoseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        sll.find(12345);
+        end = high_resolution_clock::now();
+        search_sll += duration_cast<nanoseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        sll.remove_front();
+        end = high_resolution_clock::now();
+        remove_sll += duration_cast<nanoseconds>(end - start).count();
+
+        // --- Doubly Linked List ---
+        Doubly_linked_list dll;
+        dll.fillRandom(num_elements);
+
+        start = high_resolution_clock::now();
+        dll.push_front(12345);
+        end = high_resolution_clock::now();
+        add_dll += duration_cast<nanoseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        dll.find(12345);
+        end = high_resolution_clock::now();
+        search_dll += duration_cast<nanoseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        dll.remove_front();
+        end = high_resolution_clock::now();
+        remove_dll += duration_cast<nanoseconds>(end - start).count();
     }
-    std::cout << "\n--- Benchmark Results (avg over " << trials << " trials) --- \n";
-    std::cout << "Insert time: " << total_add_time / trials << " ns\n";
-    std::cout << "Search time: " << total_search_time / trials << " ns\n";
-    std::cout << "Remove time: " << total_remove_time / trials << " ns\n";
-}
 
-void benchmark_singly_linked_list(int num_elements, int trials) {
-    using namespace std::chrono;
-
-    long long total_add_time = 0;
-    long long total_search_time = 0;
-    long long total_remove_time = 0;
-
-    for(int t = 0; t < trials; ++t) {
-        Singly_linked_list list;
-        list.fillRandom(num_elements);
-
-        auto start_add = high_resolution_clock::now();
-        list.add_randomly(12345);
-        auto end_add = high_resolution_clock::now();
-        total_add_time += duration_cast<nanoseconds>(end_add - start_add).count();
-
-        auto start_search = high_resolution_clock::now();
-        list.find(12345);
-        auto end_search = high_resolution_clock::now();
-        total_search_time += duration_cast<nanoseconds>(end_search - start_search).count();
-
-        auto start_remove = high_resolution_clock::now();
-        list.remove_randomly();
-        auto end_remove = high_resolution_clock::now();
-        total_remove_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
-    }
-    std::cout << "\n--- Benchmark Results for Singly Linked List (avg over " << trials << " trials) ---\n";
-    std::cout << "Insert time: " << total_add_time / trials << " ns\n";
-    std::cout << "Search time: " << total_search_time / trials << " ns\n";
-    std::cout << "Remove time: " << total_remove_time / trials << " ns\n";
-}
-
-void benchmark_doubly_linked_list(int num_elements, int trials) {
-    using namespace std::chrono;
-
-    long long total_add_time = 0;
-    long long total_search_time = 0;
-    long long total_remove_time = 0;
-
-    for(int t = 0; t < trials; ++t) {
-        Doubly_linked_list list;
-        list.fillRandom(num_elements);
-
-        auto start_add = high_resolution_clock::now();
-        list.add_randomly(12345);
-        auto end_add = high_resolution_clock::now();
-        total_add_time += duration_cast<nanoseconds>(end_add - start_add).count();
-
-        auto start_search = high_resolution_clock::now();
-        list.find(12345);
-        auto end_search = high_resolution_clock::now();
-        total_search_time += duration_cast<nanoseconds>(end_search - start_search).count();
-        
-        auto start_remove = high_resolution_clock::now();
-        list.remove_randomly();
-        auto end_remove = high_resolution_clock::now();
-        total_remove_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
-
-    }
-    std::cout << "\n--- Benchmark Results for Doubly Linked List (avg over " << trials << " trials) ---\n";
-    std::cout << "Insert time: " << total_add_time / trials << " ns\n";
-    std::cout << "Search time: " << total_search_time / trials << " ns\n";
-    std::cout << "Remove time: " << total_remove_time / trials << " ns\n";
+    std::cout << "\n--- Benchmark Results (avg over " << trials << " trials) ---\n";
+    std::cout << "Add time:      Dynamic Array: " << add_dyn / trials << " ns, "
+              << "Singly LL: " << add_sll / trials << " ns, "
+              << "Doubly LL: " << add_dll / trials << " ns\n";
+    std::cout << "Search time:   Dynamic Array: " << search_dyn / trials << " ns, "
+              << "Singly LL: " << search_sll / trials << " ns, "
+              << "Doubly LL: " << search_dll / trials << " ns\n";
+    std::cout << "Remove time:   Dynamic Array: " << remove_dyn / trials << " ns, "
+              << "Singly LL: " << remove_sll / trials << " ns, "
+              << "Doubly LL: " << remove_dll / trials << " ns\n";
 }
 
 int main()
@@ -333,9 +314,7 @@ int main()
     std::cout << "1. Singly Linked List" << std::endl;
     std::cout << "2. Doubly Linked List" << std::endl;
     std::cout << "3. Dynamic Array" << std::endl;
-    std::cout << "4. Benchmark Dynamic Array" << std::endl;
-    std::cout << "5. Benchmark Singly Linked List" << std::endl;
-    std::cout << "6. Benchmark Doubly Linked List" << std::endl;
+    std::cout << "4. Benchmark" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout << "Enter your choice: ";
 
@@ -361,21 +340,7 @@ int main()
             std::cin >> n;
             std::cout << "Enter number of trials: ";
             std::cin >> trials;
-            benchmark_dynamic_array(n, trials);
-            return 0;
-        case '5':
-            std::cout << "Enter number of elements: ";
-            std::cin >> n;
-            std::cout << "Enter number of trials: ";
-            std::cin >> trials;
-            benchmark_singly_linked_list(n, trials);
-            return 0;
-        case '6':
-            std::cout << "Enter number of elements: ";
-            std::cin >> n;
-            std::cout << "Enter number of trials: ";
-            std::cin >> trials;
-            benchmark_doubly_linked_list(n, trials);
+            benchmark_all(n, trials);
             return 0;
         default:
             std::cout << "Invalid choice" << std::endl;
