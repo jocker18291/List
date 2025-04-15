@@ -260,7 +260,7 @@ void benchmark_dynamic_array(int num_elements, int trials) {
 int main()
 {
     char choice;
-    int value;;
+    int value;
 
     std::srand(std::time(nullptr));
 
