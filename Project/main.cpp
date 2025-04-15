@@ -257,6 +257,38 @@ void benchmark_dynamic_array(int num_elements, int trials) {
     std::cout << "Remove time: " << total_remove_time / trials << " ns\n";
 }
 
+void benchmark_singly_linked_list(int num_elements, int trials) {
+    using namespace std::chrono;
+
+    long long total_add_time = 0;
+    long long total_search_time = 0;
+    long long total_remove_time = 0;
+
+    for(int t = 0; t < trials; ++t) {
+        Singly_linked_list list;
+        list.fillRandom(num_elements);
+
+        auto start_add = high_resolution_clock::now();
+        list.add_randomly(12345);
+        auto end_add = high_resolution_clock::now();
+        total_add_time += duration_cast<nanoseconds>(end_add - start_add).count();
+
+        auto start_search = high_resolution_clock::now();
+        list.find(12345);
+        auto end_search = high_resolution_clock::now();
+        total_search_time += duration_cast<nanoseconds>(end_search - start_search).count();
+
+        auto start_remove = high_resolution_clock::now();
+        list.remove_randomly();
+        auto end_remove = high_resolution_clock::now();
+        total_remove_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
+    }
+    std::cout << "\n--- Benchmark Results for Singly Linked List (avg over " << trials << " trials) ---\n";
+    std::cout << "Insert time: " << total_add_time / trials << " ns\n";
+    std::cout << "Search time: " << total_search_time / trials << " ns\n";
+    std::cout << "Remove time: " << total_remove_time / trials << " ns\n";
+}
+
 int main()
 {
     char choice;
