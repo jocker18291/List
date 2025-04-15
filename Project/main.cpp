@@ -290,7 +290,12 @@ int main()
             menu_dynamic_array();
             break;
         case '4':
-            benchmark_dynamic_array();
+            int n, trials;
+            std::cout << "Enter number of elements: ";
+            std::cin >> n;
+            std::cout << "Enter number of trials: ";
+            std::cin >> trials;
+            benchmark_dynamic_array(n, trials);
             break;
         default:
             std::cout << "Invalid choice" << std::endl;
