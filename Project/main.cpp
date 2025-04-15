@@ -308,12 +308,12 @@ void benchmark_doubly_linked_list(int num_elements, int trials) {
         auto start_search = high_resolution_clock::now();
         list.find(12345);
         auto end_search = high_resolution_clock::now();
-        total_add_time += duration_cast<nanoseconds>(end_search - start_search).count();
+        total_search_time += duration_cast<nanoseconds>(end_search - start_search).count();
         
         auto start_remove = high_resolution_clock::now();
         list.remove_randomly();
         auto end_remove = high_resolution_clock::now();
-        total_add_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
+        total_remove_time += duration_cast<nanoseconds>(end_remove - start_remove).count();
 
     }
     std::cout << "\n--- Benchmark Results for Doubly Linked List (avg over " << trials << " trials) ---\n";
