@@ -292,7 +292,7 @@ void benchmark_singly_linked_list(int num_elements, int trials) {
 int main()
 {
     char choice;
-    int value;
+    int value, n, trials;
 
     std::srand(std::time(nullptr));
 
@@ -323,7 +323,6 @@ int main()
             menu_dynamic_array();
             break;
         case '4':
-            int n, trials;
             std::cout << "Enter number of elements: ";
             std::cin >> n;
             std::cout << "Enter number of trials: ";
@@ -331,7 +330,6 @@ int main()
             benchmark_dynamic_array(n, trials);
             break;
         case '5':
-            int n, trials;
             std::cout << "Enter number of elements: ";
             std::cin >> n;
             std::cout << "Enter number of trials: ";
