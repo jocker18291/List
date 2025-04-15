@@ -30,7 +30,7 @@ void Doubly_linked_list::push_front(int value)	// adds an element at the front o
 		head->previous = new_Node;
 		head = new_Node;
 	}
-	std::cout << "Added " << value << " at the front" << std::endl;
+	//std::cout << "Added " << value << " at the front" << std::endl;
 }
 void Doubly_linked_list::push_back(int value)	// adds an element at the back of the list
 {
@@ -46,7 +46,7 @@ void Doubly_linked_list::push_back(int value)	// adds an element at the back of 
 		tail->next = new_Node;
 		tail = new_Node;
 	}
-	std::cout << "Added " << value << " at the back" << std::endl;
+	//std::cout << "Added " << value << " at the back" << std::endl;
 }
 void Doubly_linked_list::remove_front()			// removes an element from the front of the list
 {
@@ -67,7 +67,7 @@ void Doubly_linked_list::remove_front()			// removes an element from the front o
 		head->previous = nullptr;
 		delete temporary;
 	}
-	std::cout << "Element removed from the front" << std::endl;
+	//std::cout << "Element removed from the front" << std::endl;
 }
 void Doubly_linked_list::remove_back()			// removes an element from the back of the list
 {
@@ -88,7 +88,7 @@ void Doubly_linked_list::remove_back()			// removes an element from the back of 
 		tail->next = nullptr;
 		delete temporary;
 	}
-	std::cout << "Element removed from the back" << std::endl;
+	//std::cout << "Element removed from the back" << std::endl;
 }
 void Doubly_linked_list::print_forward()		// prints all elements of the list from front to back
 {
@@ -126,7 +126,7 @@ bool Doubly_linked_list::find(int value)		// searches for an element in the list
 	}
 	return false;
 }
-void Doubly_linked_list::remove_randomly()		// removes a random element from the list
+void Doubly_linked_list::remove_randomly(int random_index)		// removes a random element from the list
 {
 	if (head == nullptr)
 	{
@@ -142,6 +142,46 @@ void Doubly_linked_list::remove_randomly()		// removes a random element from the
 		current = current->next;
 	}
 
+	current = head;
+
+	for (int i = 0; i < random_index; i++)
+	{
+		current = current->next;
+	}
+
+	int removed_value = current->data;
+
+	if (current == head)
+	{
+		remove_front();
+	}
+	else if (current == tail)
+	{
+		remove_back();
+	}
+	else
+	{
+		current->previous->next = current->next;
+		current->next->previous = current->previous;
+		delete current;
+		//std::cout << "Removed " << removed_value << " from index " << random_index << std::endl;
+	}
+}
+void Doubly_linked_list::remove_randomly2()		// removes a random element from the list
+{
+	if (head == nullptr)
+	{
+		std::cout << "List is empty - there is nothing to remove" << std::endl;
+		return;
+	}
+	Node* current = head;
+
+	int size = 0;
+	while (current)
+	{
+		size++;
+		current = current->next;
+	}
 	int random_index = std::rand() % size;
 	current = head;
 
@@ -165,10 +205,10 @@ void Doubly_linked_list::remove_randomly()		// removes a random element from the
 		current->previous->next = current->next;
 		current->next->previous = current->previous;
 		delete current;
-		std::cout << "Removed " << removed_value << " from index " << random_index << std::endl;
+		//std::cout << "Removed " << removed_value << " from index " << random_index << std::endl;
 	}
 }
-void Doubly_linked_list::add_randomly(int value)	// adds an element at a random position
+void Doubly_linked_list::add_randomly(int random_index, int value)	// adds an element at a random position
 {
 	if (head == nullptr)
 	{
@@ -184,6 +224,48 @@ void Doubly_linked_list::add_randomly(int value)	// adds an element at a random 
 		current = current->next;
 	}
 
+	Node* new_node = new Node(value);
+	
+	if (random_index == 0)
+	{
+		push_front(value);
+	}
+	else if (random_index == size)
+	{
+		push_back(value);
+	}
+	else
+	{
+		current = head;
+		for (int i = 0; i < random_index - 1; i++)
+		{
+			current = current->next;
+		}
+
+		new_node->next = current->next;
+		new_node->previous = current;
+		current->next->previous = new_node;
+		current->next = new_node;
+
+		//std::cout << "Added " << value << " at index " << random_index << std::endl;
+	}
+}
+
+void Doubly_linked_list::add_randomly2(int value)	// adds an element at a random position
+{
+	if (head == nullptr)
+	{
+		push_front(value);
+		return;
+	}
+	Node* current = head;
+
+	int size = 0;
+	while (current)
+	{
+		size++;
+		current = current->next;
+	}
 	int random_index = std::rand() % (size + 1);
 	Node* new_node = new Node(value);
 	
@@ -208,7 +290,7 @@ void Doubly_linked_list::add_randomly(int value)	// adds an element at a random 
 		current->next->previous = new_node;
 		current->next = new_node;
 
-		std::cout << "Added " << value << " at index " << random_index << std::endl;
+		//std::cout << "Added " << value << " at index " << random_index << std::endl;
 	}
 }
 

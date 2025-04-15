@@ -19,9 +19,11 @@ public:
 
     void push_front(int value);           // adds an element at the front of the list 
     void push_back(int value);            // adds an element at the back of the list
-    void add_randomly(int value);         // adds an element at a random position
+    void add_randomly(int random_index, int value);         // adds an element at a random position
+    void add_randomly2(int value);
 
-    void remove_randomly();               // removes a random element from the list
+    void remove_randomly(int random_index);               // removes a random element from the list
+    void remove_randomly2();
     void remove_front();                  // removes an element from the front of the list
     void remove_back();                   // removes an element from the back of the list
 

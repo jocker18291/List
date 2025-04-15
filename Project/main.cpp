@@ -46,7 +46,7 @@ void menu_doubly_linked_list()
         case '3':
             std::cout << "Enter value to add at a random position: ";
             std::cin >> value;
-            Doubly_list->add_randomly(value);
+            Doubly_list->add_randomly2(value);
             break;
         case '4':
             Doubly_list->remove_front();
@@ -55,7 +55,7 @@ void menu_doubly_linked_list()
             Doubly_list->remove_back();
             break;
         case '6':
-            Doubly_list->remove_randomly();
+            Doubly_list->remove_randomly2();
             break;
         case '7':
             std::cout << "Enter value to find: ";
@@ -121,7 +121,7 @@ void menu_singly_linked_list()
         case '3':
             std::cout << "Enter value to add at a random position: ";
             std::cin >> value;
-            Singly_list->add_randomly(value);
+            Singly_list->add_randomly2(value);
             break;
         case '4':
             Singly_list->remove_front();
@@ -130,7 +130,7 @@ void menu_singly_linked_list()
             Singly_list->remove_back();
             break;
         case '6':
-            Singly_list->remove_randomly();
+            Singly_list->remove_randomly2();
             break;
         case '7':
             std::cout << "Enter value to find: ";
@@ -234,11 +234,12 @@ void benchmark_all(int num_elements, int trials) {
     long long add_dll = 0, search_dll = 0, remove_dll = 0;
 
     for(int t = 0; t < trials; ++t) {
+        int pos = rand() % num_elements + 1;
         // --- Dynamic Array ---
         ArrayList arr;
         arr.fillRandom(num_elements);
         auto start = high_resolution_clock::now();
-        arr.add(12345, 0);
+        arr.add(12345, pos);
         auto end = high_resolution_clock::now();
         add_dyn += duration_cast<nanoseconds>(end - start).count();
 
@@ -248,7 +249,7 @@ void benchmark_all(int num_elements, int trials) {
         search_dyn += duration_cast<nanoseconds>(end - start).count();
 
         start = high_resolution_clock::now();
-        arr.remove(0);
+        arr.remove(pos);
         end = high_resolution_clock::now();
         remove_dyn += duration_cast<nanoseconds>(end - start).count();
 
@@ -257,7 +258,7 @@ void benchmark_all(int num_elements, int trials) {
         sll.fillRandom(num_elements);
 
         start = high_resolution_clock::now();
-        sll.push_front(12345);
+        sll.add_randomly(pos, 12345);
         end = high_resolution_clock::now();
         add_sll += duration_cast<nanoseconds>(end - start).count();
 
@@ -267,7 +268,7 @@ void benchmark_all(int num_elements, int trials) {
         search_sll += duration_cast<nanoseconds>(end - start).count();
 
         start = high_resolution_clock::now();
-        sll.remove_front();
+        sll.remove_randomly(pos);
         end = high_resolution_clock::now();
         remove_sll += duration_cast<nanoseconds>(end - start).count();
 
@@ -276,7 +277,7 @@ void benchmark_all(int num_elements, int trials) {
         dll.fillRandom(num_elements);
 
         start = high_resolution_clock::now();
-        dll.push_front(12345);
+        dll.add_randomly(pos, 12345);
         end = high_resolution_clock::now();
         add_dll += duration_cast<nanoseconds>(end - start).count();
 
@@ -286,7 +287,7 @@ void benchmark_all(int num_elements, int trials) {
         search_dll += duration_cast<nanoseconds>(end - start).count();
 
         start = high_resolution_clock::now();
-        dll.remove_front();
+        dll.remove_randomly(pos);
         end = high_resolution_clock::now();
         remove_dll += duration_cast<nanoseconds>(end - start).count();
     }
