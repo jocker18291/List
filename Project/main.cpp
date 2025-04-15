@@ -335,6 +335,7 @@ int main()
     std::cout << "3. Dynamic Array" << std::endl;
     std::cout << "4. Benchmark Dynamic Array" << std::endl;
     std::cout << "5. Benchmark Singly Linked List" << std::endl;
+    std::cout << "6. Benchmark Doubly Linked List" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout << "Enter your choice: ";
 
@@ -345,30 +346,37 @@ int main()
         switch (choice)
         {
         case '0':
-            break;
+            return 0;
         case '1':
             menu_singly_linked_list();
-            break;
+            return 0;
         case '2':
             menu_doubly_linked_list();
-            break;
+            return 0;
         case '3':
             menu_dynamic_array();
-            break;
+            return 0;
         case '4':
             std::cout << "Enter number of elements: ";
             std::cin >> n;
             std::cout << "Enter number of trials: ";
             std::cin >> trials;
             benchmark_dynamic_array(n, trials);
-            break;
+            return 0;
         case '5':
             std::cout << "Enter number of elements: ";
             std::cin >> n;
             std::cout << "Enter number of trials: ";
             std::cin >> trials;
             benchmark_singly_linked_list(n, trials);
-            break;
+            return 0;
+        case '6':
+            std::cout << "Enter number of elements: ";
+            std::cin >> n;
+            std::cout << "Enter number of trials: ";
+            std::cin >> trials;
+            benchmark_doubly_linked_list(n, trials);
+            return 0;
         default:
             std::cout << "Invalid choice" << std::endl;
             break;
