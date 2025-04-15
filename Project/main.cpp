@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
 #include "arrayList.h"
 #include "Doubly_linked_list.hpp"
 #include "Singly_linked_list.hpp"
