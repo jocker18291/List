@@ -268,6 +268,7 @@ int main()
     std::cout << "1. Singly Linked List" << std::endl;
     std::cout << "2. Doubly Linked List" << std::endl;
     std::cout << "3. Dynamic Array" << std::endl;
+    std::cout << "4. Benchmark Dynamic Array" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout << "Enter your choice: ";
 
@@ -287,6 +288,9 @@ int main()
             break;
         case '3':
             menu_dynamic_array();
+            break;
+        case '4':
+            benchmark_dynamic_array();
             break;
         default:
             std::cout << "Invalid choice" << std::endl;
