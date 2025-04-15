@@ -205,3 +205,10 @@ void Singly_linked_list::add_randomly(int value)			// adds an element at a rando
 		std::cout << "Added " << value << " at index " << random_index << std::endl;
 	}
 }
+
+void Singly_linked_list::fillRandom(int count) {
+	for(int i = 0; i < count; ++i) {
+		int val = std::rand() % 100000;
+		push_back(val);
+	}
+}
