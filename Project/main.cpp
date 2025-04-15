@@ -186,7 +186,7 @@ void menu_dynamic_array() {
         case '2':
             std::cout << "Enter value to add at the back: ";
             std::cin >> value;
-            DynArr->add(size, value);
+            DynArr->add(DynArr->getSize(), value);
             break;
         case '3':
             std::cout << "Enter value to add at a random position: ";
