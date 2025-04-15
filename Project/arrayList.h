@@ -16,6 +16,8 @@ public:
     void remove(int index);
     int search(int value);
     void print();
+    void fillRandom(int count, int min = 0, int max = 1000);
+    int getSize() const;
 };
 
 #endif
