@@ -211,3 +211,10 @@ void Doubly_linked_list::add_randomly(int value)	// adds an element at a random 
 		std::cout << "Added " << value << " at index " << random_index << std::endl;
 	}
 }
+
+void Doubly_linked_list::fillRandom(int n) {
+	for(int i = 0; i < n; ++i) {
+		int value = std::rand() % 100000;
+		push_back(value);
+	}
+}
