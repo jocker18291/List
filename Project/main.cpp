@@ -301,6 +301,7 @@ int main()
     std::cout << "2. Doubly Linked List" << std::endl;
     std::cout << "3. Dynamic Array" << std::endl;
     std::cout << "4. Benchmark Dynamic Array" << std::endl;
+    std::cout << "5. Benchmark Singly Linked List" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout << "Enter your choice: ";
 
@@ -328,6 +329,14 @@ int main()
             std::cout << "Enter number of trials: ";
             std::cin >> trials;
             benchmark_dynamic_array(n, trials);
+            break;
+        case '5':
+            int n, trials;
+            std::cout << "Enter number of elements: ";
+            std::cin >> n;
+            std::cout << "Enter number of trials: ";
+            std::cin >> trials;
+            benchmark_singly_linked_list(n, trials);
             break;
         default:
             std::cout << "Invalid choice" << std::endl;
