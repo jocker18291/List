@@ -25,9 +25,11 @@ public:
     void remove_front();                  // removes an element from the front of the list
     void remove_back();                   // removes an element from the back of the list
 
-    bool find(int value);                 // Szukanie elementu w liœcie
+    bool find(int value);                 // Szukanie elementu w liï¿½cie
 
     void print_forward();                 // prints all elements of the list from front to back
+
+    void fillRandom(int count);
 };
 
 #endif
