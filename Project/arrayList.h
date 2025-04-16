@@ -14,7 +14,7 @@ public:
 
     void add(int value, int index);
     void remove(int index);
-    int search(int value);
+    bool search(int value);
     void print();
     void fillRandom(int count, int min = 0, int max = 1000);
     int getSize() const;

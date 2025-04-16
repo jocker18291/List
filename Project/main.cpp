@@ -182,27 +182,31 @@ void menu_dynamic_array() {
         case '1':
             std::cout << "Enter value to add at the front: ";
             std::cin >> value;
-            DynArr->add(0, value);
+            DynArr->add(value, 0);
             break;
         case '2':
             std::cout << "Enter value to add at the back: ";
             std::cin >> value;
-            DynArr->add(DynArr->getSize(), value);
+            DynArr->add(value, DynArr->getSize());
             break;
-        case '3':
+        case '3':{
+            int position = rand() % (DynArr->getSize() + 1);
             std::cout << "Enter value to add at a random position: ";
             std::cin >> value;
-            DynArr->add(0, value);
+            DynArr->add(value, position);
             break;
+        }
         case '4':
             DynArr->remove(0);
             break;
         case '5':
             DynArr->remove(DynArr->getSize() - 1);
             break;
-        case '6':
-            DynArr->remove(0);
+        case '6':{
+            int positionre = rand() % (DynArr->getSize() + 1);
+            DynArr->remove(positionre);
             break;
+        }
         case '7':
             std::cout << "Enter value to find: ";
             std::cin >> value;
